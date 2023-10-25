@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hdfs-deployment
+  labels:
+    app: hfds
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hfds
+  template:
+    metadata:
+      labels:
+        app: hfds
+    spec:
+      containers:
+      - name: hfds
+        image: ./hfds/
+        ports:
+        - containerPort: 80
