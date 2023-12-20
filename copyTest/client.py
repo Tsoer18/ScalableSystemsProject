@@ -37,5 +37,6 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
 
 def recive_msg(consumer: KafkaConsumer) -> None:
     for msg in consumer:
-        print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
-        
+        #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
+        print(msg.value)
+        print(msg.value.decode(DEFAULT_ENCODING))
