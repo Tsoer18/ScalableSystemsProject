@@ -3,6 +3,7 @@ import json
 from data_model import generate_sample, PackageObj
 from hdfs.ext.avro import AvroWriter, AvroReader
 from HDFSclient import get_hdfs_client
+import re
 
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
@@ -37,14 +38,18 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
     send_msg(key=str(key), value=value, topic=topic, producer=producer)
 
 
-def recive_msg(consumer: KafkaConsumer) -> None:
+def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
     for msg in consumer:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
 
         client = get_hdfs_client()
-        with AvroWriter(client, "/weather-report.avro",overwrite=True) as writer:
-            writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
-
+        if avro_file_path == "/weather-report.avro":
+            with AvroWriter(client, avro_file_path,overwrite=True) as writer:
+                writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
+        if avro_file_path == "/tweets.avro":
+           with AvroWriter(client, avro_file_path,overwrite=True) as writer:
+                print('happy',re.search(msg.value.decode(DEFAULT_ENCODING)))
+                writer.write({"creation_timestamp": msg.key.decode(DEFAULT_ENCODING)})
         #with AvroReader(client, "/weather-report.avro") as reader:
             #schema = reader.schema  # The inferred schema.
             # content = reader.content  # The remote file's HDFS content object.
