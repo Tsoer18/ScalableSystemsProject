@@ -1,6 +1,8 @@
 from kafka import KafkaProducer, KafkaConsumer
 import json
 from data_model import generate_sample, PackageObj
+from hdfs.ext.avro import AvroWriter
+from HDFSclient import get_gdfs_client
 
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
@@ -38,5 +40,12 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
 def recive_msg(consumer: KafkaConsumer) -> None:
     for msg in consumer:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
+
+        client = get_hdfs_client()
+        writer = AvroWriter(client, "/weather-report.avro",overwrite=True)
+        writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
+
         print(msg.key.decode(DEFAULT_ENCODING))
         print(msg.value.decode(DEFAULT_ENCODING))
+        
+    writer.close()
