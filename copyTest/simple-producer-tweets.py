@@ -2,7 +2,7 @@ import bz2
 import json
 import os
 from client import get_producer, DEFAULT_TOPIC, produce_msg, send_msg
-
+directory = 'data'
 
 def main():
     for filename in os.listdir(directory):
