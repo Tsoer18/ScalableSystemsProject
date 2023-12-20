@@ -42,10 +42,10 @@ def recive_msg(consumer: KafkaConsumer) -> None:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
 
         client = get_hdfs_client()
-        writer = AvroWriter(client, "/weather-report.avro",overwrite=True)
-        writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
+        with AvroWriter(client, "/weather-report.avro",overwrite=True) as writer:
+            writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
 
         print(msg.key.decode(DEFAULT_ENCODING))
         print(msg.value.decode(DEFAULT_ENCODING))
 
-    writer.close()
+
