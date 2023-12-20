@@ -2,7 +2,7 @@ import csv
 
 s = "climate change is real nice and dandy, therefore it is great that the greedy politicians are not willing to change climate change, change is not good anyway, climate change"
 
-print(s.count('climate change'))
+print(s.count('Climate Change'))
 
 rows = []
 with open("GlobalLandTemperaturesByCity.csv", 'r') as file:
