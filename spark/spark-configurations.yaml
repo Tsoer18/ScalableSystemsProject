@@ -19,7 +19,7 @@ metadata:
   name: data-connection
 spec:
   host: minio
-  port: 9000
+  port: 9000s
   accessStyle: Path
   credentials:
     # References the S3 credentials defined below
