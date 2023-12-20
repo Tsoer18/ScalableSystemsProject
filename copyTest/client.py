@@ -2,7 +2,7 @@ from kafka import KafkaProducer, KafkaConsumer
 import json
 from data_model import generate_sample, PackageObj
 from hdfs.ext.avro import AvroWriter
-from HDFSclient import get_gdfs_client
+from HDFSclient import get_hdfs_client
 
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
@@ -47,5 +47,5 @@ def recive_msg(consumer: KafkaConsumer) -> None:
 
         print(msg.key.decode(DEFAULT_ENCODING))
         print(msg.value.decode(DEFAULT_ENCODING))
-        
+
     writer.close()
