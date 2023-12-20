@@ -1,7 +1,7 @@
 from kafka import KafkaProducer, KafkaConsumer
 import json
 from data_model import generate_sample, PackageObj
-from hdfs.ext.avro import AvroWriter
+from hdfs.ext.avro import AvroWriter, AvroReader
 from HDFSclient import get_hdfs_client
 
 KAFKA_BROKERS: str = (
@@ -45,7 +45,14 @@ def recive_msg(consumer: KafkaConsumer) -> None:
         with AvroWriter(client, "/weather-report.avro",overwrite=True) as writer:
             writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
 
-        print(msg.key.decode(DEFAULT_ENCODING))
-        print(msg.value.decode(DEFAULT_ENCODING))
+        with AvroReader(client, "/weather-report.avro") as reader:
+            schema = reader.schema  # The inferred schema.
+            # content = reader.content  # The remote file's HDFS content object.
+
+            # Print the inferred schema
+            print(schema)
+            print("\n")
+            # Print a list of the data
+            print(list(reader))
 
 
