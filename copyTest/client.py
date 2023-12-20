@@ -45,14 +45,14 @@ def recive_msg(consumer: KafkaConsumer) -> None:
         with AvroWriter(client, "/weather-report.avro",overwrite=True) as writer:
             writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
 
-        with AvroReader(client, "/weather-report.avro") as reader:
-            schema = reader.schema  # The inferred schema.
+        #with AvroReader(client, "/weather-report.avro") as reader:
+            #schema = reader.schema  # The inferred schema.
             # content = reader.content  # The remote file's HDFS content object.
 
             # Print the inferred schema
-            print(schema)
-            print("\n")
+            #print(schema)
+            #print("\n")
             # Print a list of the data
-            print(list(reader))
+            #print(list(reader))
 
 
