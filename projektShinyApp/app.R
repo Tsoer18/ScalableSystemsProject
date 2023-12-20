@@ -9,6 +9,8 @@
 
 library(shiny)
 
+ data <- read.df("hdfs://simple-hdfs-namenode-default-0.simple-hdfs-namenode-default:8020/weather-report.avro", "avro")
+
 # Define UI for application that draws a histogram
 ui <- fluidPage(
 
