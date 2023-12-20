@@ -16,7 +16,7 @@ def main():
         header = next(csvreader)
         for row in csvreader:
             print(row[0], row[1])
-            send_msg(key = row[0], value = row[1], topic = "INGESTION")   
+            send_msg(key = row[0], value = row[1], topic = "INGESTION", producer = get_producer())   
 
 if __name__ == "__main__":
     main()
