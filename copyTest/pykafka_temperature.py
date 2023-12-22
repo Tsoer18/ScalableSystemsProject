@@ -8,6 +8,7 @@ def main():
 
     print(f"group_id={group_id}")
     consumer = get_consumer(topic = "INGESTION_TWEETS", group_id=group_id)
+    
     try:
         receive_msg_temperature(consumer)
 
