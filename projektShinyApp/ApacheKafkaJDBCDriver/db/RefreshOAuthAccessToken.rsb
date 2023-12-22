@@ -1,0 +1,13 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="RefreshOAuthAccessToken" description="Exchanges a access token for a new access token.">
+    <input  name="OAuthRefreshToken"  desc="The refresh token returned from the original authorization code exchange." required='true' />
+    <output name="OAuthAccessToken"   desc='The access token used for communication with the API.'/>
+    <output name="OAuthRefreshToken"  desc='The refresh access token used to refresh your connection.'/>
+    <output name="ExpiresIn"          desc="The lifetime of the access token, in seconds." />
+  </rsb:info>
+
+  <rsb:set attr="operationName"           value="GetOAuthAccessToken" />
+  <rsb:set attr="GrantType"               value="REFRESH" />
+  <rsb:set attr="authMode" value="WEB"/>
+  <rsb:push op="apachekafkaadoOAuth" />
+</rsb:script>

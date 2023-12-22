@@ -1,0 +1,17 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2"> 
+    <rsb:info title="RefreshOAuthAccessToken" description="Exchanges a refresh token for a new access token."> 
+        <input  name="OAuthRefreshToken"   desc="The refresh token returned from the original authorization code exchange."                                                                       required="true"   /> 
+        <output name="OAuthAccessToken"    desc="The authentication token returned from the data source. This can be used in subsequent calls to other operations for this particular service."                     /> 
+        <output name="OAuthRefreshToken"   desc="The authentication token returned from the data source. This can be used in subsequent calls to other operations for this particular service."                     /> 
+        <output name="ExpiresIn"           desc="The remaining lifetime on the access token."                                                                                                                       /> 
+    </rsb:info> 
+
+    <rsb:set attr="grant_type" value="REFRESH" /> 
+    <rsb:set attr="authmode" value="WEB" /> 
+    <rsb:set attr="Operation" value="GetOAuthAccessToken" />
+
+    <rsb:call op="utiladoCloudOAuth" out="toout" ignoreprefix="ggl"> 
+        <rsb:push item="toout" /> 
+    </rsb:call>
+
+</rsb:script>

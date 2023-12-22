@@ -1,0 +1,8 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_resultset_close" description="It's invoked when the ResultSet is closed.">
+    <input name="pagetoken#" desc="The page tokens of the resultset." />
+    <input name="iteratorid#" desc="The query iterator ids of the resultset." />
+  </rsb:info>
+  
+  <rsb:push op="apachekafkaadoCloseResultSet"/>  
+</rsb:script>

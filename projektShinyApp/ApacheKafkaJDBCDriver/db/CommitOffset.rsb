@@ -1,0 +1,11 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+
+    <rsb:info title="CommitOffset" desc="Commits the messages to the connection ConsumerGroupId.">
+        <output name="Success"        description="Whether the operation was successful or not."/>
+    </rsb:info>
+
+    <rsb:call op="apachekafkaadoCommitOffset">
+        <rsb:push/>
+    </rsb:call>
+
+</rsb:script>

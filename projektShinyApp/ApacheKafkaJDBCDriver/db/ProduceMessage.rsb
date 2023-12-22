@@ -1,0 +1,20 @@
+<api:script xmlns:api="http://apiscript.com/ns?v1" xmlns:xs="http://www.cdata.com/ns/rsbscript/2" xmlns:other="http://apiscript.com/other?v1">
+  <api:info title="ProduceMessage" desc="Sends a raw message to Kafka.">
+    <input  name="Topic"            required="true"                                  desc="The topic that contains the message." />
+    <input  name="Partition"                                                         desc="The partition the message is assigned to. Must be valid for the given topic. Automatically assigned by the native client if not set." />
+    <input  name="KeyText"                                                           desc="The message given as text. The value is encoded as UTF-8 before being sent to Kafka. Do not set if KeyBytes is given." />
+    <input  name="KeyBytes"                                                          desc="The message key given as a base64 encoded string. Do not set if KeyText is given." />
+    <input  name="MessageText"                                                       desc="The message key given as text. The value is encoded as UTF-8 before being sent to Kafka. Do not set if MessageBytes is given." />
+    <input  name="MessageBytes"                                                      desc="The message value given as a base64 encoded string. Do not set if MessageText is given." />
+    <output name="PartitionWritten"                                    type="int"    desc="The partition that the message was written to. Is the same as Partition if that parameter is given." />
+    <output name="OffsetWritten"                                       type="long"   desc="The position in the partition that the message was written to." />
+    <output name="TimestampWritten"                                    type="long"   desc="The Unix timestamp of the instant the message was committed to the partition." />
+    <output name="KeyWritten"                                          type="string" desc="The base64 data of the key that was written. Is NULL if neither Key nor KeyBytes was provided." />
+    <output name="MessageWritten"                                      type="string" desc="The base64 data of the value that was written. Is NULL if neither Message nor MessageBytes was provided." />
+    <output name="Success"                                             type="bool"   desc="Whether the operation was successful." />
+  </api:info>
+
+  <api:call op="apachekafkaadoProduceMessage">
+    <api:push />
+  </api:call>
+</api:script>

@@ -1,0 +1,18 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_tablecolumns" description="This scripts lists the table columns.">
+    <attr  name="ColumnName"         desc="The name of the column." />
+    <attr  name="IsKey"              desc="Whether or not the column is a key."  />
+    <attr  name="SystemDataType"     desc="The data type of the column." />
+    <attr  name="IsReadOnly"         desc="Whether or not the column is read-only." />
+    <attr  name="Description"        desc="The description of the column." />
+
+    <input name="TableName"          desc="The table name for which to list columns." />
+    <input name="CatalogName"        desc="The catalog name for which to list columns." />
+    <input name="SchemaName"         desc="The schema name for which to list columns." />
+  </rsb:info>
+  
+  <rsb:script method="GET">
+    <rsb:push op="apachekafkaadoSysTableColumns"/>
+  </rsb:script>
+  
+</rsb:script>

@@ -1,0 +1,27 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="Sys_Data" description="This is a system table that provides data from Kafka. Normally you do not use this table directly. It is used when you access data from MarkLogic tables.">
+    <input name="*" desc="Input varies depending on the table." />
+    <input name="Table" desc="The name of the table." required="true" />
+  </rsb:info>
+  
+  <rsb:script method="GET">
+    <rsb:call op="eventprodSelect" output="out">
+      <rsb:push item="out"/>
+    </rsb:call>
+  </rsb:script>
+  
+  <rsb:script method="POST">
+    <rsb:call op="eventprodInsert" output="out">
+      <rsb:push item="out"/>
+    </rsb:call>
+  </rsb:script>  
+  
+  <api:script method="MERGE">
+    <api:throw code="500" desc="Updates are not currently supported." />
+  </api:script>
+
+  <api:script method="DELETE">
+    <api:throw code="500" desc="Deletes are not currently supported." />
+  </api:script>
+  
+</rsb:script>

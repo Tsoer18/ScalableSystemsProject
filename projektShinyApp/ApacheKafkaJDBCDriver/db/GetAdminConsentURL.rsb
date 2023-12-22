@@ -1,0 +1,11 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+	<rsb:info title="GetAdminConsentURL" 		description="Gets the admin consent URL that must be opened separately by an admin of a given domain to grant access to your application. Only needed when using custom OAuth credentials.">  
+		<input name="CallbackUrl" desc="The URL the user will be redirected to after authorizing your application. This value must match the Reply URL in the Azure AD app settings."/>
+        <input name="State"       desc="The same value for state that you sent when you requested the authorization code." />
+    
+		<output name="URL"        desc="The authorization URL, entered into a Web browser to obtain the verifier token and authorize your app."/>	
+	</rsb:info>
+		  
+  <rsb:set attr="operationName"           value="GetAdminConsentURL" />
+  <rsb:push op="apachekafkaadoOAuth" />
+</rsb:script>

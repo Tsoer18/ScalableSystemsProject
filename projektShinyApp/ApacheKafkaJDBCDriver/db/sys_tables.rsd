@@ -1,0 +1,20 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_tables" description="This is a system table that provides a list of tables.">
+    <attr name="Id"         	desc="The id of the column." />
+    <attr name="Type"       	desc="Type of columns."  />
+	
+    <attr name="TableName"  	desc="The name of the table." />
+    <attr  name="TableType#"     desc="Type of the table." />
+    <attr name="SchemaName" 	desc="The name of the Schema." />
+    <attr name="CatalogName"	desc="The name of the Catalogue." />
+  </rsb:info>
+  
+  <rsb:script method="GET">
+    <rsb:push op="apachekafkaadoSysTables"/>
+  </rsb:script>
+    
+  <rsb:script method="POST">
+    <rsb:push op="apachekafkaadoCreateTable"/>
+  </rsb:script>
+  
+</rsb:script>

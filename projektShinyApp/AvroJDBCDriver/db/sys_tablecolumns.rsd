@@ -1,0 +1,11 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_tablecolumns" description="This is a system table that provides data from Avro files. Normally you do not use this table directly.">
+    <input name="*" desc="sys_tablecolumns." />
+    <input name="TableName" desc="The name of the table." />
+  </rsb:info>
+  
+  <rsb:script method="GET"> 
+    <rsb:push op="avroadoListColumns" input="_input" />
+  </rsb:script>
+
+</rsb:script>

@@ -1,0 +1,16 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+
+  <rsb:info title="GetOAuthAccessToken" description="Gets an OAuth authentication token.">
+    <input   name="AuthMode"         desc="The type of authentication mode to use. Select App for getting authentication tokens via a desktop app. Select Web for getting authentication tokens via a Web app."     values="APP,WEB"   default="WEB" />  
+    <input   name="Verifier"         desc="The verifier returned after the user has authorized your app to have access to their data. This value will be returned as a parameter to the callback URL." />
+    <input   name="CallbackURL"      desc="Determines where the response is sent." />
+    <input   name="State"            desc="Indicates any state which may be useful to your application upon receipt of the response. Your application receives the same value it sent, as this parameter makes a round-trip to the authorization server and back. Uses include redirecting the user to the correct resource in your site, nonces, and cross-site-request-forgery mitigations." />
+    
+    <output name="OAuthAccessToken"  desc="The access token used for communication with the API."/>
+    <output name="OAuthRefreshToken" desc="The refresh access token used to refresh your connection." />
+    <output name="ExpiresIn"         desc="The lifetime of the access token, in seconds." />
+  </rsb:info>
+  
+  <rsb:set attr="operationName"           value="GetOAuthAccessToken" />
+  <rsb:push op="apachekafkaadoOAuth" />
+</rsb:script>

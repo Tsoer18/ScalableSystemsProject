@@ -1,0 +1,16 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_tables" description="This is a system table that provides data from Avro files. Normally you do not use this table directly.">
+    <input name="*" desc="sys_tables" />
+  </rsb:info>
+
+  <rsb:script method="GET"> 
+    <rsb:push op="avroadoListTables" input="_input" />
+  </rsb:script>
+  <rsb:script method="POST"> 
+    <rsb:push op="avroadoCreateTable" input="_input" />
+  </rsb:script>
+  <rsb:script method="DELETE"> 
+    <rsb:push op="avroadoDropTable" /> 
+  </rsb:script> 
+
+</rsb:script>

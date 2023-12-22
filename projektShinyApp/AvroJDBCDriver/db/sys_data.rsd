@@ -1,0 +1,22 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+  <rsb:info title="sys_data" description="This is a system table that provides data from Avro files. Normally you do not use this table directly.">
+    <input name="*" desc="Input varies depending on the table." />
+  </rsb:info>
+  
+  <rsb:script method="GET"> 
+  	<rsb:push op="avroadoListData"  out="toout" />
+  </rsb:script>
+
+  <rsb:script method="POST">
+    <rsb:push op="avroadoInsert" out="toout"/>
+  </rsb:script>
+
+  <rsb:script method="MERGE">
+    <rsb:throw code="500" desc="UPDATE operation is not supported." />
+  </rsb:script>
+
+  <rsb:script method="DELETE">
+    <rsb:throw code="500" desc="DELETE operation is not supported." />
+  </rsb:script>
+
+</rsb:script>

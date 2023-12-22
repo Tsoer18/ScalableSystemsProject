@@ -1,0 +1,15 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+	<rsb:info title="CreateSchema" description="Creates a schema definition of a table in Kafka.">
+		<input  name="TableName"  required="true"                     desc="The name of the table." />
+		<input  name="FileName"                                       desc="The full file path and name of the schema to generate. Ex: 'C:\\Users\\User\\Desktop\\ApacheKafka\\company.rsd'"/>
+		<input  name="FileStream"                 streamoutput="true" desc="Stream to write the schema to."/>
+		<output name="Result" 	                                      desc="Whether or not the schema was successfully downloaded."/>
+		<output name="FileData"                                       desc="The generated schema as base64. Only set if FileName and FileStream are not provided." />
+	</rsb:info>
+
+	<api:set attr="GetOp" value="eventprodSelect"/>
+    
+	<rsb:call op="coreCreateSchema" out="toout">
+		<rsb:push item="toout"/>
+	</rsb:call>
+</rsb:script>

@@ -1,0 +1,7 @@
+<rsb:script xmlns:rsb="http://www.rssbus.com/ns/rsbscript/2">
+<rsb:info title="Sys_Connect" description="This is a system table that allows you to test a connection.">
+</rsb:info>
+
+<rsb:push op="avroadoTestConnection" />
+
+</rsb:script>
