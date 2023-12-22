@@ -85,3 +85,25 @@ def receive_msg_temperature(consumer: KafkaConsumer) -> None:
             print("Wrote rows to file")
             counter = 0
             rows = []
+def receive_msg_tweets(consumer: KafkaConsumer) -> None:
+    counter = 0
+    filename = "tweets.csv"
+    rows = []
+    for msg in consumer:
+        if counter < 100:
+            key = msg.key.decode(DEFAULT_ENCODING)
+            counter_string = str(counter)
+            print("Current counter: " + counter_string)
+            row = [key]
+            rows.append(row)
+            counter += 1
+        else:
+            os.remove(filename)
+            with open(filename, 'w') as csvfile: 
+                for row in rows:
+                    csvwriter = csv.writer(csvfile)
+                    csvwriter.writerow(row) 
+                csvfile.close()   
+            print("Wrote rows to file")
+            counter = 0
+            rows = []

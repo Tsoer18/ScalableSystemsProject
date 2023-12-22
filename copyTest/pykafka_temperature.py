@@ -7,8 +7,8 @@ def main():
     group_id = args[0] if len(args) == 1 else DEFAULT_CONSUMER
 
     print(f"group_id={group_id}")
-    consumer = get_consumer(topic = "INGESTION_TWEETS", group_id=group_id)
-    
+    consumer = get_consumer(topic = "INGESTION", group_id=group_id)
+
     try:
         receive_msg_temperature(consumer)
 
