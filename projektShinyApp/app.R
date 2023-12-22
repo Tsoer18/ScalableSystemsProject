@@ -11,12 +11,12 @@ library(shiny)
 library(RJDBC)
 
 avro_driver <- JDBC(driverClass = "cdata.jdbc.avro.AvroDriver", classPath = "AvroJDBCDriver\\lib\\cdata.jdbc.avro.jar", identifier.quote = "'")
-avro_conn <- dbConnect(avro_driver,"jdbc:avro:URI=C:/folder/table.avroInitiateOAuth=GETANDREFRESH")
+avro_conn <- dbConnect(avro_driver,"jdbc:avro:URI=hdfs://simple-hdfs-namenode-default-0.simple-hdfs-namenode-default:8020/tweets.avroInitiateOAuth=GETANDREFRESH")
 dbListTables(avro_conn)
 #SKAL BRUGE CDATA DRIVER SOM SKAL DOWNLOADES OG SMIDES OVER PÅ VM POTENTIELT IDK HVORDAN DET VIRKER XD
 #
 kafka_driver <- JDBC(driverClass = "cdata.jdbc.apachekafka.ApacheKafkaDriver", classPath = "ApacheKafkaJDBCDriver\\lib\\cdata.jdbc.apachekafka.jar", identifier.quote = "'")
-kafka_conn <- dbConnect(kafka_driver,"jdbc:apachekafka:User=admin;Password=pass;BootStrapServers=https://localhost:9091;Topic=MyTopic;")
+kafka_conn <- dbConnect(kafka_driver,"jdbc:apachekafka:BootStrapServers=https://strimzi-kafka-bootstrap:9092;Topic=INGESTION_TWEETS;")
 dbListTables(kafka_conn)
 
 #data <- read.df("hdfs://simple-hdfs-namenode-default-0.simple-hdfs-namenode-default:8020/weather-report.avro", "avro")
