@@ -4,6 +4,8 @@ from data_model import generate_sample, PackageObj
 from hdfs.ext.avro import AvroWriter, AvroReader
 from HDFSclient import get_hdfs_client
 import re
+import csv
+import os
 
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
@@ -60,4 +62,19 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
             # Print a list of the data
             #print(list(reader))
 
+def receive_msg_temperature(consumer: KafkaConsumer) -> None:
+    counter = 0
+    filename = "temperature.csv"
 
+    if(counter < 100):
+        for msg in consumer:
+            key = msg.key.decode(DEFAULT_ENCODING)
+            value = msg.value.decode(DEFAULT_ENCODING)
+            row = [key, value]
+            counter = counter + 1
+            with open(filename, 'w') as csvfile:
+                csvwriter = csv.writer(csvfile)
+                csvwriter.writerow(row)
+    else:
+        os.remove(filename)
+        counter = 0
