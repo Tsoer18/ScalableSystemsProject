@@ -77,6 +77,7 @@ def receive_msg_temperature(consumer: KafkaConsumer) -> None:
                 csvwriter = csv.writer(csvfile)
                 csvwriter.writerow(row)    
             else:
-                csvwriter.close()
+                
+                os.remove(filename)
                 print("Removed file")
                 counter = 0
