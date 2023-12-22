@@ -76,6 +76,7 @@ def receive_msg_temperature(consumer: KafkaConsumer) -> None:
             rows.append(row)
             counter += 1
         else:
+            os.remove(filename)
             with open(filename, 'w') as csvfile: 
                 for row in rows:
                     csvwriter = csv.writer(csvfile)
