@@ -65,18 +65,20 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
 def receive_msg_temperature(consumer: KafkaConsumer) -> None:
     counter = 0
     filename = "temperature.csv"
+    rows = []
     for msg in consumer:
         if counter < 100:
-            with open(filename, 'w') as csvfile: 
-                key = msg.key.decode(DEFAULT_ENCODING)
-                value = msg.value.decode(DEFAULT_ENCODING)
-                counter_string = str(counter)
-                print("Current counter: " + counter_string)
-                row = [key, value]
-                counter = counter + 1
-                csvwriter = csv.writer(csvfile)
-                csvwriter.writerow(row)        
+            key = msg.key.decode(DEFAULT_ENCODING)
+            value = msg.value.decode(DEFAULT_ENCODING)
+            counter_string = str(counter)
+            print("Current counter: " + counter_string)
+            row = [key, value]
+            rows.append(row)
         else:
-            os.remove(filename)
-            print("Removed file")
+            with open(filename, 'w') as csvfile: 
+                for row in rows:
+                    csvwriter = csv.writer(csvfile)
+                    csvwriter.writerow(row)    
+            print("Wrote rows to file")
             counter = 0
+            rows = []
