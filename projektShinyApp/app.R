@@ -58,10 +58,6 @@ server <- function(input, output) {
     })
     print('Lavede connections')
   
-    print(dbListTables(kafka_conn))
-    
-    
-    print(dbListTables(avro_conn))
 }
 
 # Run the application 
