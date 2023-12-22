@@ -72,7 +72,8 @@ def receive_msg_temperature(consumer: KafkaConsumer) -> None:
             value = msg.value.decode(DEFAULT_ENCODING)
             print("Received key: " + key)
             print("Received value:" + value)
-            print("Current counter: " + (str)counter)
+            counter_string = str(counter)
+            print("Current counter: " + counter_string)
             row = [key, value]
             counter = counter + 1
             with open(filename, 'w') as csvfile:
