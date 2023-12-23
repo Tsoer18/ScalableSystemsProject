@@ -12,11 +12,10 @@ client = get_hdfs_client()
 with AvroReader(client, "/weather-report.avro") as reader:
         
         counter = 0
-        # Print a list of the data
+        # Print a list of the data"
         for x in list(reader):
-                y = json.loads(x)
-                print(y[date])
-                print(y[temperature])
+                x["date"]
+                x["temperature"]
                 print(counter)
         
 
