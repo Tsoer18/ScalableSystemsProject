@@ -54,7 +54,7 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
         if avro_file_path == "/tweets.avro":
             print("msg value: ")
             print(msg.value.decode(DEFAULT_ENCODING))
-            print(_______________________________)
+            print("_______________________________")
             with AvroWriter(client, avro_file_path,overwrite=True) as writer:
                     with AvroReader(client, "/tweets.avro") as reader:
                         listReader = list(reader)
