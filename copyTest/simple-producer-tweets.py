@@ -33,7 +33,7 @@ def main():
                     print("DONE WITH MEASUREMENTS")
                     print(measurements)
                     print("_____________________________________________________")
-                    time.sleep(10)
+                    time.sleep(120)
 
 if __name__ == "__main__":
     main()
