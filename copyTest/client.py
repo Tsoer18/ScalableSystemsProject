@@ -47,17 +47,16 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
         if avro_file_path == "/weather-report.avro":
             with AvroWriter(client, avro_file_path,overwrite=True) as writer:
                 with AvroReader(client, "/weather-report.avro") as reader:
-                    print("Current data in the reader is:")
                     listReader = list(reader)
-                    print(listReader)
-                    print("-----------------")
                     for data in listReader:
                         writer.write(data)
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
-                print("Wrote to file")
         if avro_file_path == "/tweets.avro":
            with AvroWriter(client, avro_file_path,overwrite=False) as writer:
-                #print('happy',re.search(msg.value.decode(DEFAULT_ENCODING)))
+                with AvroReader(client, "/tweets.avro") as reader:
+                    listReader = list(reader)
+                    for data in listReader:
+                        writer.write(data)
                 writer.write({"creation_timestamp": msg.key.decode(DEFAULT_ENCODING)})
         #with AvroReader(client, "/weather-report.avro") as reader:
             #schema = reader.schema  # The inferred schema.

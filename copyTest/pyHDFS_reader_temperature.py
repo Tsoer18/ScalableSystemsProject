@@ -16,6 +16,12 @@ with AvroReader(client, "/weather-report.avro") as reader:
         print(schema)
         print("\n")
         # Print a list of the data
+        counter = 0
+        # Print a list of the data
         print(list(reader))
+        for x in list(reader):
+                print(x)
+                counter += 1
+                print(counter)
         
 
