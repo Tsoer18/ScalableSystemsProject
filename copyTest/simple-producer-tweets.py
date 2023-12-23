@@ -21,7 +21,7 @@ def main():
                 print(tweets['data']['created_at'], tweets['data']['text'])
                 send_msg(key = tweets['data']['created_at'], value = tweets['data']['text'], topic = "INGESTION_TWEETS", producer = get_producer())   
                 counter += 1
-                if counter == 100 & counter2 < 11:
+                if counter < 100 & counter2 < 11:
                     toc = time.perf_counter
                     measurements.append[tic-toc]
                     tic = time.perf_counter
@@ -29,7 +29,7 @@ def main():
                     print(counter2)
                     counter = 0
                     counter2 += 1
-                if counter == 100 & counter2 >= 11:
+                if counter > 100 & counter2 > 11:
                     print("DONE WITH MEASUREMENTS")
                     print(measurements)
                     print("_____________________________________________________")
