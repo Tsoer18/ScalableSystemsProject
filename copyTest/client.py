@@ -150,11 +150,8 @@ def search(value):
             toc = time.perf_counter()
             return 'found mention'
     toc = time.perf_counter()
-    if (counter<100):
-        measurements.append(toc-tic)
-        counter += 1
-    else:
-        print(measurements)
+
+    print(toc-tic)
     
 
     return None
