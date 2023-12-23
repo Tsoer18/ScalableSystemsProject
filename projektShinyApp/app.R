@@ -89,12 +89,13 @@ server <- function(input, output) {
     # draw the histogram with the specified number of bins
    
     
-    ggplot(df) +
+    p <- ggplot(df) +
       geom_histogram(aes(x = tweets)) +
       scale_x_date(labels = date_format("%m %d %Y"), date_breaks = "30 days") +
       theme(legend.position = "bottom",
             axis.text.x = element_text(angle = 45, hjust = 1))
-  }
+  plot(p)
+    }
   )
   
 }
