@@ -7,6 +7,10 @@ import re
 import csv
 import os
 import os.path
+import time
+
+measurements = []
+counter = 0
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
 )
@@ -137,10 +141,21 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
             counter = 0
             rows = []
 def search(value):
+
     words = ["climate", "global warming", "temperature"]
+    tic = time.perf_counter()
     for word in words:
         if (re.search(word,value) != None):
+            toc = time.perf_counter()
             return 'found mention'
+    toc = time.perf_counter()
+    if (counter<100):
+        measurements.append(toc-tic)
+        counter += 1
+    else:
+        print(measurements)
+    
+
     return None
 
     
