@@ -9,17 +9,19 @@ import os
 
 client = get_hdfs_client()
 with AvroReader(client, "/tweets.avro") as reader:
-        schema = reader.schema  # The inferred schema.
-        # content = reader.content  # The remote file's HDFS content object.
-
-        # Print the inferred schema
-        print(schema)
-        print("\n")
+        rows = []
         counter = 0
-        # Print a list of the data
+        filename = "persistentTweets.csv"
+        # Print a list of the data"
         for x in list(reader):
                 print(x)
-                counter += 1
-                print(counter)
+                #x["temperature"] = x["temperature"].replace('"', '')
+                #row = [x["date"], x["temperature"]]
+                #rows.append(row)
+        with open(filename, 'w') as csvfile: 
+                for row in rows:
+                        csvwriter = csv.writer(csvfile)
+                        csvwriter.writerow(row) 
+                csvfile.close()
         
 
