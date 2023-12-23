@@ -15,7 +15,7 @@ def main():
     counter = 0
     measurements = []
     counter2 = 0
-    tic = time.perf_counter
+    tic = time.perf_counter()
     with open("GlobalLandTemperaturesByCity.csv", 'r') as file:
         csvreader = csv.reader(file)
         header = next(csvreader)
@@ -25,9 +25,9 @@ def main():
             counter += 1
             print(counter)
             if counter > 100 & counter2 < 11:
-                toc = time.perf_counter
-                measurements.append[tic-toc]
-                tic = time.perf_counter
+                toc = time.perf_counter()
+                measurements.append[toc-tic]
+                tic = time.perf_counter()
                 print("DID ANOTHER MEASUREMENT")
                 print(counter2) 
                 counter = 0
