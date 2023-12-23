@@ -41,10 +41,9 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
 
 
 def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
+    client = get_hdfs_client()
     for msg in consumer:
-        #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))
-
-        client = get_hdfs_client()
+        #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))        
         if avro_file_path == "/weather-report.avro":
             with AvroWriter(client, avro_file_path,overwrite=False) as writer:
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
