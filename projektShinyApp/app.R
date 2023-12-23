@@ -15,13 +15,13 @@ library(scales)
 
 
 library(readr)
-system("sudo microk8s kubectl cp ubuntuconsumer:copyTest/temperature.csv temperature.csv
+system("sudo microk8s kubectl cp ubuntu-recent-temp:copyTest/temperature.csv temperature.csv
 ")
-system("sudo microk8s kubectl cp ubuntuconsumer:copyTest/tweets.csv tweets.csv
+system("sudo microk8s kubectl cp ubuntu-recent-tweet:copyTest/tweets.csv tweets.csv
 ")
-system("sudo microk8s kubectl cp ubuntuconsumer:copyTest/persistentTemperature.csv persistentTemperature.csv
+system("sudo microk8s kubectl cp ubuntu-persist-temp:copyTest/persistentTemperature.csv persistentTemperature.csv
 ")
-system("sudo microk8s kubectl cp ubuntuconsumer:copyTest/persistentTweets.csv persistentTweets.csv
+system("sudo microk8s kubectl cp ubuntu-persist-tweet:copyTest/persistentTweets.csv persistentTweets.csv
 ")
 persistentTemperature <- read_csv("persistentTemperature.csv")
 
