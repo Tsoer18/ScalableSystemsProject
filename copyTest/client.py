@@ -6,7 +6,7 @@ from HDFSclient import get_hdfs_client
 import re
 import csv
 import os
-
+import os.path
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
 )
@@ -109,7 +109,8 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
             rows.append(row)
             counter += 1
         else:
-            os.remove(filename)
+            if (os.path.isfile(filename)):
+                os.remove(filename)
             with open(filename, 'w') as csvfile: 
                 for row in rows:
                     csvwriter = csv.writer(csvfile)
