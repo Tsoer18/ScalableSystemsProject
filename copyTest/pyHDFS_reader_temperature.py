@@ -17,4 +17,5 @@ with AvroReader(client, "/weather-report.avro") as reader:
         print("\n")
         # Print a list of the data
         print(list(reader))
+        
 

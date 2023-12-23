@@ -46,10 +46,10 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
 
         client = get_hdfs_client()
         if avro_file_path == "/weather-report.avro":
-            with AvroWriter(client, avro_file_path,overwrite=True) as writer:
+            with AvroWriter(client, avro_file_path,overwrite=False) as writer:
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
         if avro_file_path == "/tweets.avro":
-           with AvroWriter(client, avro_file_path,overwrite=True) as writer:
+           with AvroWriter(client, avro_file_path,overwrite=False) as writer:
                 #print('happy',re.search(msg.value.decode(DEFAULT_ENCODING)))
                 writer.write({"creation_timestamp": msg.key.decode(DEFAULT_ENCODING)})
         #with AvroReader(client, "/weather-report.avro") as reader:
