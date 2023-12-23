@@ -52,7 +52,7 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
                     print(listReader)
                     print("-----------------")
                     for data in listReader:
-                        print(data)
+                        writer.write(data)
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
                 print("Wrote to file")
         if avro_file_path == "/tweets.avro":
