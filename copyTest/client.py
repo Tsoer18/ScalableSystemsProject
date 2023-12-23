@@ -48,7 +48,7 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
             with AvroWriter(client, avro_file_path,overwrite=True) as writer:
                 with AvroReader(client, "/weather-report.avro") as reader:
                     print("Current data in the reader is:")
-                    print((reader))
+                    print((dict(reader)))
                     print("-----------------")
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
                 print("Wrote to file")
