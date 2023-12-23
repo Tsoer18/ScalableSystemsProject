@@ -14,8 +14,7 @@ with AvroReader(client, "/weather-report.avro") as reader:
         counter = 0
         # Print a list of the data"
         for x in list(reader):
-                x["date"]
-                x["temperature"]
+                print(x)
                 print(counter)
         
 
