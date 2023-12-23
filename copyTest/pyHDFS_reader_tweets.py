@@ -6,27 +6,29 @@ from HDFSclient import get_hdfs_client
 import re
 import csv
 import os
+import time
 
-client = get_hdfs_client()
-with AvroReader(client, "/tweets.avro") as reader:
-        rows = []
-        counter = 0
-        filename = "persistentTweets.csv"
-        # Print a list of the data"
-        for x in list(reader):
-                print(x)
-                #x["temperature"] = x["temperature"].replace('"', '')
-                row = [x["creation_timestamp"]]
-                rows.append(row)
-        fileExists = os.path.exists(filename)
-        with open(filename, 'w') as csvfile: 
-                csvwriter = csv.writer(csvfile)
-                if (fileExists == False):
-                        header = ["date"]
-                        csvwriter.writerow(header) 
-                        print("added headertweets")
-                for row in rows:
-                        csvwriter.writerow(row) 
-                csvfile.close()
+while(True):
+        client = get_hdfs_client()
+        with AvroReader(client, "/tweets.avro") as reader:
+                rows = []
+                counter = 0
+                filename = "persistentTweets.csv"
+                # Print a list of the data"
+                for x in list(reader):
+                        print(x)
+                        row = [x["creation_timestamp"]]
+                        rows.append(row)
+                fileExists = os.path.exists(filename)
+                with open(filename, 'w') as csvfile: 
+                        csvwriter = csv.writer(csvfile)
+                        if (fileExists == False):
+                                header = ["date"]
+                                csvwriter.writerow(header) 
+                                print("added headertweets")
+                        for row in rows:
+                                csvwriter.writerow(row) 
+                        csvfile.close()
+        time.sleep(60)
                 
 

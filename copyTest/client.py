@@ -53,7 +53,7 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
         if avro_file_path == "/tweets.avro":
             message_value = msg.value.decode(DEFAULT_ENCODING)
-            if (re.search("happy", message_value) != None):
+            if (search(message_value) != None):
                 print("Found tweet with value:")
                 print(message_value)
                 print("____________________")
@@ -107,7 +107,7 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
     for msg in consumer:
         if counter < 100:
             message_value = msg.value.decode(DEFAULT_ENCODING)
-            if (re.search("happy", message_value) != None):
+            if (search(message_value) != None):
                 print("Found tweet with value:")
                 print(message_value)
                 print("____________________")
@@ -128,3 +128,11 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
             print("Wrote rows to file")
             counter = 0
             rows = []
+def search(value):
+    words = ["climate", "global warming", "temperature"]
+    for word in words:
+        if (re.search(word,value) != None):
+            return 'found mention'
+    return None
+
+    

@@ -49,9 +49,13 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
+          titlePanel("Persistent temperature data"),
           plotOutput("plOlivert1"),
+          titlePanel("Persistent tweet data"),
           plotOutput("plOlivert2"),
+          titlePanel("Recent temperature data"),
           plotOutput("plOlivert3"),
+          titlePanel("Recent tweet data"),
           plotOutput("plOlivert4")
           
           
