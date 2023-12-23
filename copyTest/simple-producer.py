@@ -24,7 +24,7 @@ def main():
             send_msg(key = row[0], value = row[1], topic = "INGESTION", producer = get_producer())
             counter += 1
             print(counter)
-            if counter < 100 & counter2 < 11:
+            if counter > 100 & counter2 < 11:
                 toc = time.perf_counter
                 measurements.append[tic-toc]
                 tic = time.perf_counter
