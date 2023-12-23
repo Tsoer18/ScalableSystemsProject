@@ -34,11 +34,12 @@ def main():
                     print(counter2) 
                     counter = 0
                     counter2 += 1
-            if counter > 100 & counter2 > 11:
-                print("DONE WITH MEASUREMENTS")
-                print(measurements)
-                print("_____________________________________________________")
-                time.sleep(120)
+            if counter > 100:
+                if counter2 > 11:
+                    print("DONE WITH MEASUREMENTS")
+                    print(measurements)
+                    print("_____________________________________________________")
+                    time.sleep(120)
 
 if __name__ == "__main__":
     main()

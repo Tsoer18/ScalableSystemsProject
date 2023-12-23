@@ -18,22 +18,24 @@ def main():
         with bz2.open(f) as bzinput:
             for i, line in enumerate(bzinput):
                 tweets = json.loads(line)
-                print(tweets['data']['created_at'], tweets['data']['text'])
+                #print(tweets['data']['created_at'], tweets['data']['text'])
                 send_msg(key = tweets['data']['created_at'], value = tweets['data']['text'], topic = "INGESTION_TWEETS", producer = get_producer())   
                 counter += 1
-                if counter < 100 & counter2 < 11:
-                    toc = time.perf_counter
-                    measurements.append[tic-toc]
-                    tic = time.perf_counter
-                    print("DID ANOTHER MEASUREMENT")
-                    print(counter2)
-                    counter = 0
-                    counter2 += 1
-                if counter > 100 & counter2 > 11:
-                    print("DONE WITH MEASUREMENTS")
-                    print(measurements)
-                    print("_____________________________________________________")
-                    time.sleep(120)
+                if counter < 100: 
+                    if counter2 < 11:
+                        toc = time.perf_counter
+                        measurements.append[float(toc-tic)]
+                        tic = time.perf_counter
+                        print("DID ANOTHER MEASUREMENT")
+                        print(counter2)
+                        counter = 0
+                        counter2 += 1
+                if counter > 100:
+                    if counter2 >= 11:
+                        print("DONE WITH MEASUREMENTS")
+                        print(measurements)
+                        print("_____________________________________________________")
+                        time.sleep(120)
 
 if __name__ == "__main__":
     main()
