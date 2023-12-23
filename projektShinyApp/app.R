@@ -10,6 +10,7 @@
 library(shiny)
 library(dplyr)
 library(ggplot2)
+library(scales)
 
 
 
@@ -86,7 +87,13 @@ server <- function(input, output) {
   )
   output$plOlivert4 <- renderPlot({
     # draw the histogram with the specified number of bins
-    hist(tweets, col = 'darkgray', border = 'white')
+   
+    
+    ggplot(df) +
+      geom_histogram(aes(x = tweets)) +
+      scale_x_date(labels = date_format("%m %d %Y"), date_breaks = "30 days") +
+      theme(legend.position = "bottom",
+            axis.text.x = element_text(angle = 45, hjust = 1))
   }
   )
   
