@@ -24,10 +24,9 @@ def main():
                 if counter < 100: 
                     if counter2 < 11:
                         toc = time.perf_counter
-                        measurements.append[float(toc-tic)]
                         tic = time.perf_counter
                         print("DID ANOTHER MEASUREMENT")
-                        print(counter2)
+                        print(toc-tic)
                         counter = 0
                         counter2 += 1
                 if counter > 100:
