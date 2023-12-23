@@ -74,7 +74,10 @@ server <- function(input, output) {
   output$plOlivert2 <- renderPlot({
 
     # draw the histogram with the specified number of bins
-    #hist(persistentTweets, col = 'darkgray', border = 'white')
+    p <-ggplot(persistentTweets, aes(date)) +
+      geom_histogram()
+    
+    plot(p)
   }
   )
   output$plOlivert3 <- renderPlot({
@@ -89,10 +92,11 @@ server <- function(input, output) {
     # draw the histogram with the specified number of bins
    
     
-    p <- ggplot(tweets) +
-      geom_histogram(aes(x = tweets)) 
-  plot(p)
-    }
+    p <-ggplot(tweets, aes(date)) +
+      geom_histogram()
+  
+    plot(p)
+  }
   )
   
 }
