@@ -16,8 +16,8 @@ with AvroReader(client, "/tweets.avro") as reader:
         for x in list(reader):
                 print(x)
                 #x["temperature"] = x["temperature"].replace('"', '')
-                #row = [x["date"], x["temperature"]]
-                #rows.append(row)
+                row = [x["creation_timestamp"]]
+                rows.append(row)
         with open(filename, 'w') as csvfile: 
                 for row in rows:
                         csvwriter = csv.writer(csvfile)
