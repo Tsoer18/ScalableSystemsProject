@@ -10,7 +10,7 @@ def main():
     counter = 0
     measurements = []
     counter2 = 0
-    tic = time.perf_counter
+    tic = time.perf_counter()
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         if os.path.isfile(f):
@@ -23,11 +23,11 @@ def main():
                 counter += 1
                 if counter < 100: 
                     if counter2 < 11:
-                        toc = time.perf_counter
+                        toc = time.perf_counter()
                         print("DID ANOTHER MEASUREMENT")
                         result = toc-tic
                         print(result)
-                        tic = time.perf_counter
+                        tic = time.perf_counter()
                         counter = 0
                         counter2 += 1
                 if counter > 100:
