@@ -9,8 +9,8 @@ import os
 import os.path
 import time
 
-measurements = []
-counter = 0
+
+
 KAFKA_BROKERS: str = (
     "strimzi-kafka-bootstrap.kafka:9092"  # <service name>.<namepsace>:<port>
 )
@@ -45,6 +45,7 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
 
 
 def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
+    measurements = []
     client = get_hdfs_client()
     for msg in consumer:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))        
