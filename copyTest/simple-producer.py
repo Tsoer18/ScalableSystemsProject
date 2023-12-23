@@ -20,7 +20,7 @@ def main():
         csvreader = csv.reader(file)
         header = next(csvreader)
         for row in csvreader:
-            print(row[0], row[1])
+            #print(row[0], row[1])
             send_msg(key = row[0], value = row[1], topic = "INGESTION", producer = get_producer())
             counter += 1
             print(counter)
@@ -28,7 +28,6 @@ def main():
                 toc = time.perf_counter()
                 result = toc-tic
                 print(result)
-                measurements.append[result]
                 tic = time.perf_counter()
                 print("DID ANOTHER MEASUREMENT")
                 print(counter2) 
