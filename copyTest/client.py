@@ -121,7 +121,7 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
                 os.remove(filename)
             with open(filename, 'w') as csvfile: 
                 csvwriter = csv.writer(csvfile)
-                csvwriter.writerow(["date"])
+                csvwriter.writerow(["date"])    
                 for row in rows:
                     csvwriter.writerow(row) 
                 csvfile.close()   

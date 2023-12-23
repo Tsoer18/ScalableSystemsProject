@@ -71,15 +71,13 @@ server <- function(input, output) {
   }
 )
   output$plOlivert2 <- renderPlot({
-    p <- ggplot(persistentTweets, aes(y = temperature, x = date, ))
-    p <- p + geom_point()
-    p <- p + labs(y = "Temp", x = "Date")
-    
-    plot(p)
+
+    # draw the histogram with the specified number of bins
+    hist(persistentTweets, col = 'darkgray', border = 'white')
   }
   )
   output$plOlivert3 <- renderPlot({
-    p <- ggplot(persistentTemperature, aes(y = temperature, x = date, ))
+    p <- ggplot(temperature, aes(y = temperature, x = date, ))
     p <- p + geom_point()
     p <- p + labs(y = "Temp", x = "Date")
     
@@ -87,11 +85,8 @@ server <- function(input, output) {
   }
   )
   output$plOlivert4 <- renderPlot({
-    p <- ggplot(persistentTemperature, aes(y = temperature, x = date, ))
-    p <- p + geom_point()
-    p <- p + labs(y = "Temp", x = "Date")
-    
-    plot(p)
+    # draw the histogram with the specified number of bins
+    hist(tweets, col = 'darkgray', border = 'white')
   }
   )
   
