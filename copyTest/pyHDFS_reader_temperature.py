@@ -18,14 +18,13 @@ with AvroReader(client, "/weather-report.avro") as reader:
                 x["temperature"] = x["temperature"].replace('"', '')
                 row = [x["date"], x["temperature"]]
                 rows.append(row)
-        if (os.path.exists(filename) != True):
-                with open(filename, 'w') as csvfile: 
-                        csvwriter = csv.writer(csvfile)
+        fileExists =os.path.exists(filename)
+        with open(filename, 'w') as csvfile:
+                csvwriter = csv.writer(csvfile)
+                if (fileExists == False):
                         header = ['date','temperature']
                         csvwriter.writerow(header) 
-                        csvfile.close()
                         print('added header')
-        with open(filename, 'w') as csvfile: 
                 for row in rows:
                         csvwriter = csv.writer(csvfile)
                         csvwriter.writerow(row) 
