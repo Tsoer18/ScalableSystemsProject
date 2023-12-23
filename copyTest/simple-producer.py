@@ -24,20 +24,21 @@ def main():
             send_msg(key = row[0], value = row[1], topic = "INGESTION", producer = get_producer())
             counter += 1
             print(counter)
-            if counter > 100 & counter2 < 11:
-                toc = time.perf_counter()
-                result = toc-tic
-                print(result)
-                tic = time.perf_counter()
-                print("DID ANOTHER MEASUREMENT")
-                print(counter2) 
-                counter = 0
-                counter2 += 1
+            if counter > 100:
+                if counter2 < 11:
+                    toc = time.perf_counter()
+                    result = toc-tic
+                    print(result)
+                    tic = time.perf_counter()
+                    print("DID ANOTHER MEASUREMENT")
+                    print(counter2) 
+                    counter = 0
+                    counter2 += 1
             if counter > 100 & counter2 > 11:
                 print("DONE WITH MEASUREMENTS")
                 print(measurements)
                 print("_____________________________________________________")
-                time.sleep(120)  
+                time.sleep(120)
 
 if __name__ == "__main__":
     main()
