@@ -21,5 +21,5 @@ with AvroReader(client, "/tweets.avro") as reader:
                 print(x)
                 counter += 1
                 print(counter)
-
+        
 

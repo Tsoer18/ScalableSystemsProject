@@ -17,8 +17,7 @@ with AvroReader(client, "/weather-report.avro") as reader:
         for x in list(reader):
                 print(x["date"])
                 print(x["temperature"])
-                x["temperature"].replace("\"","")
-                print(x["temperature"])
+                print(float(x["temperature"]))
                 row = [x["date"], x["temperature"]]
                 rows.append(row)
         with open(filename, 'w') as csvfile: 
