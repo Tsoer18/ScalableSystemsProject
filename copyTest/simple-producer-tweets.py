@@ -4,11 +4,12 @@ import os
 from client import get_producer, DEFAULT_TOPIC, produce_msg, send_msg
 import time
 directory = 'data'
-counter = 0
-measurements = []
-counter2 = 0
+
 
 def main():
+    counter = 0
+    measurements = []
+    counter2 = 0
     tic = time.perf_counter
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
