@@ -22,7 +22,7 @@ with AvroReader(client, "/tweets.avro") as reader:
         with open(filename, 'w') as csvfile: 
                 csvwriter = csv.writer(csvfile)
                 if (fileExists == False):
-                        header = 'date'
+                        header = ["date"]
                         csvwriter.writerow(header) 
                         print("added headertweets")
                 for row in rows:
