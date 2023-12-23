@@ -15,7 +15,13 @@ library(scales)
 
 
 library(readr)
+system("sudo microk8s kubectl cp ubuntu-persist-temp:copyTest/persistentTemperature.csv persistentTemperature.csv
+")
+system("sudo microk8s kubectl cp ubuntu-persist-tweet:copyTest/persistentTweets.csv persistentTweets.csv
+")
+persistentTemperature <- read_csv("persistentTemperature.csv")
 
+persistentTweets <- read_csv("persistentTweets.csv")
 
 
 
@@ -50,13 +56,6 @@ server <- function(input, output) {
 ")
   system("sudo microk8s kubectl cp ubuntu-recent-tweet:copyTest/tweets.csv tweets.csv
 ")
-  system("sudo microk8s kubectl cp ubuntu-persist-temp:copyTest/persistentTemperature.csv persistentTemperature.csv
-")
-  system("sudo microk8s kubectl cp ubuntu-persist-tweet:copyTest/persistentTweets.csv persistentTweets.csv
-")
-  persistentTemperature <- read_csv("persistentTemperature.csv")
-  
-  persistentTweets <- read_csv("persistentTweets.csv")
   
   temperature <- read_csv("temperature.csv")
   tweets <- read_csv("tweets.csv")
