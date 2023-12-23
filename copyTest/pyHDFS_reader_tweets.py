@@ -17,7 +17,6 @@ with AvroReader(client, "/tweets.avro") as reader:
         print("\n")
         counter = 0
         # Print a list of the data
-        print(list(reader))
         for x in list(reader):
                 print(x)
                 counter += 1
