@@ -93,7 +93,7 @@ def receive_msg_temperature(consumer: KafkaConsumer) -> None:
             with open(filename, 'w') as csvfile: 
                 csvwriter = csv.writer(csvfile)
                 header = ["date", "temperature"]
-                csvwriter.writerow([header])
+                csvwriter.writerow(header)
                 for row in rows:
                     csvwriter.writerow(row) 
                 csvfile.close()   
