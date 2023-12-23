@@ -26,7 +26,8 @@ def main():
                         toc = time.perf_counter
                         tic = time.perf_counter
                         print("DID ANOTHER MEASUREMENT")
-                        print(toc-tic)
+                        result = toc-tic
+                        print(result)
                         counter = 0
                         counter2 += 1
                 if counter > 100:
