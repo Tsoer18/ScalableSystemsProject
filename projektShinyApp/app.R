@@ -29,6 +29,13 @@ persistentTweets <- read_csv("persistentTweets.csv")
 temperature <- read_csv("temperature.csv")
 tweets <- read_csv("tweets.csv")
 
+colnames(persistentTemperature)
+colnames(persistentTweets)
+
+colnames(temperature)
+colnames(tweets)
+
+
 
 # Define UI for application that draws a histogram
 ui <- fluidPage(
