@@ -19,14 +19,12 @@ with AvroReader(client, "/tweets.avro") as reader:
                 row = [x["creation_timestamp"]]
                 rows.append(row)
         print (os.path.exists(filename))
-        if (os.path.exists(filename) != True):
-                with open(filename, 'w') as csvfile: 
-                        csvwriter = csv.writer(csvfile)
+        with open(filename, 'w') as csvfile: 
+                csvwriter = csv.writer(csvfile)
+                if (os.path.exists(filename) != True):
                         header = ['date']
                         csvwriter.writerow(header) 
-                        csvfile.close()
                         print("added headertweets")
-        with open(filename, 'w') as csvfile: 
                 for row in rows:
                         csvwriter = csv.writer(csvfile)
                         csvwriter.writerow(row) 
