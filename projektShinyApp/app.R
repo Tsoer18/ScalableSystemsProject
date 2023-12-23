@@ -11,8 +11,7 @@ library(plotly)
 library(shiny)
 library(dplyr)
 library(ggplot2)
-library(gapminder)
-library(gganimate)
+
 
 
 library(readr)
