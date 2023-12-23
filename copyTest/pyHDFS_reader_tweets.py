@@ -26,7 +26,6 @@ with AvroReader(client, "/tweets.avro") as reader:
                         csvwriter.writerow(header) 
                         print("added headertweets")
                 for row in rows:
-                        csvwriter = csv.writer(csvfile)
                         csvwriter.writerow(row) 
                 csvfile.close()
                 
