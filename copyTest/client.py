@@ -53,7 +53,7 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
         if avro_file_path == "/tweets.avro":
             message_value = msg.value.decode(DEFAULT_ENCODING)
-            if (re.search(message_value, "happy") != None):
+            if (re.search("happy", message_value) != None):
                 print("Found tweet with value:")
                 print(message_value)
                 print("____________________")
