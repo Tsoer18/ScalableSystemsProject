@@ -18,10 +18,16 @@ with AvroReader(client, "/tweets.avro") as reader:
                 #x["temperature"] = x["temperature"].replace('"', '')
                 row = [x["creation_timestamp"]]
                 rows.append(row)
+        if (os.path.isfile(filename) != True):
+                with open(filename, 'w') as csvfile: 
+                        csvwriter = csv.writer(csvfile)
+                        header = ["date"]
+                        csvwriter.writerow(header) 
+                        csvfile.close()
         with open(filename, 'w') as csvfile: 
                 for row in rows:
                         csvwriter = csv.writer(csvfile)
                         csvwriter.writerow(row) 
                 csvfile.close()
-        
+                
 
