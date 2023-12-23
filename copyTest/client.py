@@ -45,7 +45,16 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
     for msg in consumer:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))        
         if avro_file_path == "/weather-report.avro":
-            with AvroWriter(client, avro_file_path,overwrite=False) as writer:
+            with AvroWriter(client, avro_file_path,overwrite=True) as writer:
+                with AvroReader(client, "/weather-report.avro") as reader:
+                    schema = reader.schema  # The inferred schema.
+                    content = reader.content  # The remote file's HDFS content object.
+
+                    #Print the inferred schema
+                    print(schema)
+                    print("\n")
+                    #Print a list of the data
+                    print(list(reader))
                 writer.write({"date": msg.key.decode(DEFAULT_ENCODING), "temperature" : msg.value.decode(DEFAULT_ENCODING)})
         if avro_file_path == "/tweets.avro":
            with AvroWriter(client, avro_file_path,overwrite=False) as writer:
