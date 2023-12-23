@@ -13,7 +13,7 @@ with AvroReader(client, "/weather-report.avro") as reader:
         rows = []
         counter = 0
         filename = "persistentTemperature.csv"
-        # Print a list of the data"
+        # Print a list of the data"     
         for x in list(reader):
                 x["temperature"] = x["temperature"].replace('"', '')
                 row = [x["date"], x["temperature"]]

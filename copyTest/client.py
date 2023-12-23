@@ -106,11 +106,16 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
     rows = []
     for msg in consumer:
         if counter < 100:
-            key = msg.key.decode(DEFAULT_ENCODING)
-            counter_string = str(counter)
-            row = [key]
-            rows.append(row)
-            counter += 1
+            message_value = msg.value.decode(DEFAULT_ENCODING)
+            if (re.search("happy", message_value) != None):
+                print("Found tweet with value:")
+                print(message_value)
+                print("____________________")
+                key = msg.key.decode(DEFAULT_ENCODING)
+                counter_string = str(counter)
+                row = [key]
+                rows.append(row)
+                counter += 1
         else:
             if (os.path.isfile(filename)):
                 os.remove(filename)
