@@ -43,9 +43,10 @@ def produce_msg(sensor_id: int, topic: str, producer: KafkaProducer) -> None:
     print(value)
     send_msg(key=str(key), value=value, topic=topic, producer=producer)
 
+measurements = []
+counter = 0
 
 def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
-    measurements = []
     client = get_hdfs_client()
     for msg in consumer:
         #print(PackageObj(**json.loads(msg.value.decode(DEFAULT_ENCODING))))        
@@ -61,6 +62,10 @@ def recive_msg(consumer: KafkaConsumer, avro_file_path) -> None:
                 print(msg.value.decode(DEFAULT_ENCODING))
                 print("_____________________")
         if avro_file_path == "/tweets.avro":
+            counter += 1
+            if (counter > 100):
+                print(measurements)
+                counter = 0
             message_value = msg.value.decode(DEFAULT_ENCODING)
             if (search(message_value) != None):
                 print("Found tweet with value:")
@@ -142,7 +147,7 @@ def receive_msg_tweets(consumer: KafkaConsumer) -> None:
             counter = 0
             rows = []
 def search(value):
-
+    
     words = ["climate", "global warming", "temperature"]
     tic = time.perf_counter()
     for word in words:
@@ -151,8 +156,7 @@ def search(value):
             return 'found mention'
     toc = time.perf_counter()
 
-    print(toc-tic)
-    
+    measurements.append(toc-tic)
 
     return None
 
