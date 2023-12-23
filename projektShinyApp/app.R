@@ -74,7 +74,7 @@ server <- function(input, output) {
   output$plOlivert2 <- renderPlot({
 
     # draw the histogram with the specified number of bins
-    hist(persistentTweets, col = 'darkgray', border = 'white')
+    #hist(persistentTweets, col = 'darkgray', border = 'white')
   }
   )
   output$plOlivert3 <- renderPlot({
@@ -89,7 +89,7 @@ server <- function(input, output) {
     # draw the histogram with the specified number of bins
    
     
-    p <- ggplot(df) +
+    p <- ggplot(tweets) +
       geom_histogram(aes(x = tweets)) +
       scale_x_date(labels = date_format("%m %d %Y"), date_breaks = "30 days") +
       theme(legend.position = "bottom",
