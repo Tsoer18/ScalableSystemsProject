@@ -7,7 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-library(tidyverse)
 library(plotly)
 library(shiny)
 library(dplyr)
