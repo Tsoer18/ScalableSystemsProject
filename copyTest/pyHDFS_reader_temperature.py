@@ -21,7 +21,7 @@ with AvroReader(client, "/weather-report.avro") as reader:
         if (os.path.isfile(filename) != True):
                 with open(filename, 'w') as csvfile: 
                         csvwriter = csv.writer(csvfile)
-                        header = ["date","temperature"]
+                        header = ['date','temperature']
                         csvwriter.writerow(header) 
                         csvfile.close()
         with open(filename, 'w') as csvfile: 
