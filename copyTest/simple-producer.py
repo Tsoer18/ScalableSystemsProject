@@ -26,7 +26,9 @@ def main():
             print(counter)
             if counter > 100 & counter2 < 11:
                 toc = time.perf_counter()
-                measurements.append[toc-tic]
+                result = toc-tic
+                print(result)
+                measurements.append[result]
                 tic = time.perf_counter()
                 print("DID ANOTHER MEASUREMENT")
                 print(counter2) 
