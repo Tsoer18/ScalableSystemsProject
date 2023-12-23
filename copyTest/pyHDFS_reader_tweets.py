@@ -22,7 +22,7 @@ while(True):
                 fileExists = os.path.exists(filename)
                 with open(filename, 'w') as csvfile: 
                         csvwriter = csv.writer(csvfile)
-                        if (fileExists == False):
+                        if (True):
                                 header = ["date"]
                                 csvwriter.writerow(header) 
                                 print("added headertweets")
