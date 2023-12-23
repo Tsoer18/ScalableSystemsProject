@@ -7,7 +7,6 @@
 #    http://shiny.rstudio.com/
 #
 
-library(plotly)
 library(shiny)
 library(dplyr)
 library(ggplot2)
@@ -42,10 +41,10 @@ ui <- fluidPage(
 
         # Show a plot of the generated distribution
         mainPanel(
-          plotlyOutput("plOlivert1"),
-          plotlyOutput("plOlivert2"),
-          plotlyOutput("plOlivert3"),
-          plotlyOutput("plOlivert4")
+          plotOutput("plOlivert1"),
+          plotOutput("plOlivert2"),
+          plotOutput("plOlivert3"),
+          plotOutput("plOlivert4")
           
           
         )
@@ -56,36 +55,36 @@ ui <- fluidPage(
 server <- function(input, output) {
   
 
-  output$plOlivert1 <- renderPlotly({
+  output$plOlivert1 <- renderPlot({
     p <- ggplot(persistentTemperature, aes(y = temperature, x = date, ))
     p <- p + geom_point()
     p <- p + labs(y = "Temp", x = "Date")
     
-    ggplotly(p)
+    plot(p)
   }
 )
-  output$plOlivert2 <- renderPlotly({
+  output$plOlivert2 <- renderPlot({
     p <- ggplot(persistentTweets, aes(y = temperature, x = date, ))
     p <- p + geom_point()
     p <- p + labs(y = "Temp", x = "Date")
     
-    ggplotly(p)
+    plot(p)
   }
   )
-  output$plOlivert3 <- renderPlotly({
+  output$plOlivert3 <- renderPlot({
     p <- ggplot(persistentTemperature, aes(y = temperature, x = date, ))
     p <- p + geom_point()
     p <- p + labs(y = "Temp", x = "Date")
     
-    ggplotly(p)
+    plot(p)
   }
   )
-  output$plOlivert4 <- renderPlotly({
+  output$plOlivert4 <- renderPlot({
     p <- ggplot(persistentTemperature, aes(y = temperature, x = date, ))
     p <- p + geom_point()
     p <- p + labs(y = "Temp", x = "Date")
     
-    ggplotly(p)
+    plot(p)
   }
   )
   
