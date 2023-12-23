@@ -12,6 +12,8 @@ def main():
         with bz2.open(f) as bzinput:
             for i, line in enumerate(bzinput):
                 tweets = json.loads(line)
+                print(tweets['data']['created_at'] + tweets['data']['text'])
+                
                 send_msg(key = tweets['data']['created_at'], value = tweets['data']['text'], topic = "INGESTION_TWEETS", producer = get_producer())   
 
 if __name__ == "__main__":

@@ -28,7 +28,11 @@ while (True):
                                 print('added header')
                         for row in rows:
                                 csvwriter = csv.writer(csvfile)
-                                csvwriter.writerow(row) 
+                                csvwriter.writerow(row)
+                                counter +=1
+                        print("Wrote csv file with all temperature data with this many rows:")
+                        print(counter)
+                        print("__________________________")
                         csvfile.close()
         time.sleep(60)
         

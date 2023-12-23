@@ -27,7 +27,11 @@ while(True):
                                 csvwriter.writerow(header) 
                                 print("added headertweets")
                         for row in rows:
-                                csvwriter.writerow(row) 
+                                csvwriter.writerow(row)
+                                counter += 1
+                        print("Wrote csv file with all tweet data with this many rows:")
+                        print(counter)
+                        print("__________________________")
                         csvfile.close()
         time.sleep(60)
                 
